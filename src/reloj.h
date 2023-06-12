@@ -15,4 +15,4 @@ bool ClockSetTime(clock_t reloj, const uint8_t * hora, int size);
  * @param clock 
  */
 
-void CloclTick(clock_t clock);
+//void CloclTick(clock_t clock);

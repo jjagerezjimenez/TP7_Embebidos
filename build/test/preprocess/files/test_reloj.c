@@ -8,23 +8,51 @@
 
 
 
+
+
+static clock_t reloj;
+
+static uint8_t hora[6];
+
+
+
+
+
+void setUp(void) {
+
+    static const uint8_t INICIAL[] = {1, 2, 3, 4};
+
+ reloj = ClockCreate(5);
+
+
+
+}
+
+
+
+
+
+
+
+
+
 void test_reloj_arranca_con_hora_invalida(void) {
 
-   static const uint8_t ESPERANDO[] = {0, 0, 0, 0, 0, 0};
+ static const uint8_t ESPERANDO[] = {0, 0, 0, 0, 0, 0};
 
-   uint8_t hora[6] = {0xFF};
+ uint8_t hora[6] = {0xFF};
 
 
 
-   clock_t reloj = ClockCreate(5);
+ clock_t reloj = ClockCreate(5);
 
-   do {if (!(ClockGetTime(reloj, hora, 6))) {} else {UnityFail( ((" Expected FALSE Was TRUE")), (UNITY_UINT)((UNITY_UINT)(12)));}} while(0);
+ do {if (!(ClockGetTime(reloj, hora, 6))) {} else {UnityFail( ((" Expected FALSE Was TRUE")), (UNITY_UINT)((UNITY_UINT)(26)));}} while(0);
 
-   UnityAssertEqualIntArray(( const void*)((ESPERANDO)), ( const void*)((hora)), (UNITY_UINT32)((6)), (
+ UnityAssertEqualIntArray(( const void*)((ESPERANDO)), ( const void*)((hora)), (UNITY_UINT32)((6)), (
 
-  ((void *)0)
+((void *)0)
 
-  ), (UNITY_UINT)(13), UNITY_DISPLAY_STYLE_UINT8, UNITY_ARRAY_TO_ARRAY);
+), (UNITY_UINT)(27), UNITY_DISPLAY_STYLE_UINT8, UNITY_ARRAY_TO_ARRAY);
 
 }
 
@@ -36,21 +64,25 @@ void test_reloj_arranca_con_hora_invalida(void) {
 
 void test_ajustar_hora(void){
 
-   static const uint8_t ESPERANDO[] = {1, 2, 3, 4, 0, 0};
-
-   uint8_t hora[6] = {0xFF};
-
-
-
-   clock_t reloj = ClockCreate(5);
-
-
-
-   do {if ((ClockGetTime(reloj, ESPERANDO, 4))) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (UNITY_UINT)((UNITY_UINT)(24)));}} while(0);
+ static const uint8_t ESPERANDO[] = {1, 2, 3, 4, 0, 0};
 
 
 
 
+
+ clock_t reloj = ClockCreate(5);
+
+
+
+ do {if ((ClockGetTime(reloj, ESPERANDO, 4))) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (UNITY_UINT)((UNITY_UINT)(38)));}} while(0);
+
+ do {if ((ClockGetTime(reloj, hora, 6))) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (UNITY_UINT)((UNITY_UINT)(39)));}} while(0);
+
+ UnityAssertEqualIntArray(( const void*)((ESPERANDO)), ( const void*)((hora)), (UNITY_UINT32)((6)), (
+
+((void *)0)
+
+), (UNITY_UINT)(40), UNITY_DISPLAY_STYLE_UINT8, UNITY_ARRAY_TO_ARRAY);
 
 
 

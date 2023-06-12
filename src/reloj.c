@@ -14,8 +14,9 @@ struct clock_s {
 
 clock_t ClockCreate(int tics_por_segundo){
 	static struct clock_s self[1];
-
 	memset(self, 0, sizeof(self));
+
+	
 	return self;
     //return NULL;
 }
@@ -26,13 +27,14 @@ bool ClockGetTime(clock_t reloj, uint8_t * hora, int size){
     //return true;
 }
 
-void ClockSetTime(clock_t reloj,const uint8_t * hora, int size){
+bool ClockSetTime(clock_t reloj,const uint8_t * hora, int size){
 
+	memcpy(reloj->hora_actual, hora, size);
 	reloj->valida = true;
-	//	memcpy(reloj->hora_actual, hora, size);
-	return true;
+	
+	return reloj->valida;
 }
 
-void ClockTrick(clock_t clock){
-	clock->hora_actual[5] =1;
-}
+//void ClockTrick(clock_t clock){
+//	clock->hora_actual[5] =1;
+//}

@@ -28,9 +28,6 @@ static void CMock_Destroy(void)
 {
 }
 
-/*=======Setup (stub)=====*/
-void setUp(void) {}
-
 /*=======Teardown (stub)=====*/
 void tearDown(void) {}
 
@@ -82,8 +79,8 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_reloj.c");
-  run_test(test_reloj_arranca_con_hora_invalida, "test_reloj_arranca_con_hora_invalida", 7);
-  run_test(test_ajustar_hora, "test_ajustar_hora", 18);
+  run_test(test_reloj_arranca_con_hora_invalida, "test_reloj_arranca_con_hora_invalida", 21);
+  run_test(test_ajustar_hora, "test_ajustar_hora", 32);
 
   return UnityEnd();
 }
