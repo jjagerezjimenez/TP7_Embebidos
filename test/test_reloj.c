@@ -23,6 +23,7 @@ void test_reloj_arranca_con_hora_invalida(void) {
 	uint8_t hora[6] = {0xFF};
 
 	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+
 	TEST_ASSERT_FALSE(ClockGetTime(reloj, hora, 6));
 	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
 }
@@ -31,15 +32,16 @@ void test_reloj_arranca_con_hora_invalida(void) {
 
 void test_ajustar_hora(void){
 	static const uint8_t ESPERANDO[] = {1, 2, 3, 4, 0, 0};
-	//uint8_t hora[6] = {0xFF};                    //no hace falta dejarlo en FF
-
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+	
 	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
 	//CloclSetTime(reloj, ESPERANDO, 4);
-	TEST_ASSERT_TRUE(ClockGetTime(reloj, ESPERANDO, 4));           //ojo, corregir, uso get y no deberia, se cuelag porque pide escritura
+	TEST_ASSERT_TRUE(ClockSetTime(reloj, ESPERANDO, 4));           //ojo, corregir, uso get y no deberia, se cuelag porque pide escritura
 	TEST_ASSERT_TRUE(ClockGetTime(reloj, hora, 6));
 	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
 
 }
+
 
 /*
 void test_ajustar_hora(void){

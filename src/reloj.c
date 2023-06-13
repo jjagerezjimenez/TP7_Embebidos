@@ -5,6 +5,8 @@
 
 struct clock_s {
     uint8_t hora_actual[6];
+	uint32_t tics_per_second;
+    uint32_t tics;
 	bool valida;
 
 };
@@ -32,7 +34,7 @@ bool ClockSetTime(clock_t reloj,const uint8_t * hora, int size){
 	memcpy(reloj->hora_actual, hora, size);
 	reloj->valida = true;
 	
-	return reloj->valida;
+	return true;
 }
 
 //void ClockTrick(clock_t clock){

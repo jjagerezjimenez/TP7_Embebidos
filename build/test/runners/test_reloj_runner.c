@@ -80,7 +80,7 @@ int main(void)
 {
   UnityBegin("test_reloj.c");
   run_test(test_reloj_arranca_con_hora_invalida, "test_reloj_arranca_con_hora_invalida", 21);
-  run_test(test_ajustar_hora, "test_ajustar_hora", 32);
+  run_test(test_ajustar_hora, "test_ajustar_hora", 33);
 
   return UnityEnd();
 }
