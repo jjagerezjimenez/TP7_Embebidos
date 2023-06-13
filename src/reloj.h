@@ -9,6 +9,8 @@ bool ClockGetTime(clock_t reloj, uint8_t * hora, int size);
 
 bool ClockSetTime(clock_t reloj, const uint8_t * hora, int size);
 
+void ClockTick(clock_t reloj);
+
 /**
  * @brief Funcion para actualizar la cuenta kfdssangiosángoa
  * 

@@ -4,19 +4,23 @@
   :file: test_reloj.c
 :successes:
 - :test: test_reloj_arranca_con_hora_invalida
-  :line: 21
+  :line: 30
   :message: ''
   :unity_test_time: 0
 - :test: test_ajustar_hora
-  :line: 33
+  :line: 42
+  :message: ''
+  :unity_test_time: 0
+- :test: test_unidad_segundos
+  :line: 56
   :message: ''
   :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.001059438000083901
+:time: 0.0005515510001714574
