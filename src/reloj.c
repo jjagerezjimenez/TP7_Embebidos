@@ -14,13 +14,23 @@
 #define TIEMPO_UNIDAD 10
 
 
+
+struct alarma_s{
+	uint8_t alarma_actual[6];
+	bool alarma_valida;
+
+};
+
 struct clock_s {
     uint8_t hora_actual[6];
 	uint32_t tics_per_second;
     uint32_t tics;
 	bool valida;
+	struct alarma_s alarma[1];
 
 };
+
+
         
 
 
@@ -86,4 +96,18 @@ void ClockTick(clock_t reloj){
         reloj -> hora_actual[UNIDAD_HOR] = 0;
         reloj -> hora_actual[DECENA_HOR] = 0;
     }
+}
+
+
+
+bool ClockGetAlarma(clock_t reloj, uint8_t * hora, int size){
+	memcpy(hora, reloj -> alarma -> alarma_actual, size);
+	return reloj -> alarma -> alarma_valida;
+}
+
+bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size){
+	memcpy(reloj -> alarma -> alarma_actual, hora, size);
+	reloj -> alarma -> alarma_valida = true;
+
+	return reloj -> alarma -> alarma_valida; 
 }

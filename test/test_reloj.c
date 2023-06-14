@@ -13,14 +13,16 @@
     }
 
 
-static clock_t	reloj;		//?
-static uint8_t hora[6];		//?
+static clock_t	reloj;
+static uint8_t hora[6];
 
 
 
 void setUp(void) {
-   	static const uint8_t INICIAL[] = {1, 2, 3, 4};
+   	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
 	reloj = ClockCreate(TICS_POR_SEGUNDO);
+
+	TEST_ASSERT_TRUE(ClockSetTime(reloj, INICIAL, sizeof(INICIAL)));
    
 }
 
@@ -148,9 +150,29 @@ void test_incrementar_dia(void){
     static const uint8_t INICIAL[]={2, 3, 5, 9, 5, 9};
 	
     TEST_ASSERT_TRUE(ClockSetTime(reloj, INICIAL, sizeof(INICIAL)));
-	
+
     SIMULADOR_SEGUNDOS(1, ClockTick(reloj));
 
     TEST_ASSERT_TRUE(ClockGetTime(reloj, hora, sizeof(hora)));
     TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERADO, hora, sizeof(ESPERADO));
 }
+
+
+void test_ajustar_alarma(void){
+	static const uint8_t ESPERANDO[] = {1, 2, 3, 4, 0, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+	
+	TEST_ASSERT_FALSE(ClockGetAlarma(reloj, hora, 6));
+	//clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetAlarma(reloj, ESPERANDO, sizeof(ESPERANDO));
+	ClockGetAlarma(reloj, hora, 6);
+
+	TEST_ASSERT_TRUE(ClockSetAlarma(reloj, ESPERANDO, 4));           //ojo, corregir, uso get y no deberia, se cuelag porque pide escritura
+	TEST_ASSERT_TRUE(ClockGetAlarma(reloj, hora, 6));
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+	// y este? -> TEST_ASSERT_FALSE(ClockGetAlarma(reloj, hora, 6)); consultar
+
+}
+
+
+
