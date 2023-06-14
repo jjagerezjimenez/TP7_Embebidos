@@ -142,3 +142,15 @@ void test_decena_horas(void){
 	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
 
 }
+
+void test_incrementar_dia(void){
+    static const uint8_t ESPERADO[]={0, 0, 0, 0, 0, 0}; 
+    static const uint8_t INICIAL[]={2, 3, 5, 9, 5, 9};
+	
+    TEST_ASSERT_TRUE(ClockSetTime(reloj, INICIAL, sizeof(INICIAL)));
+	
+    SIMULADOR_SEGUNDOS(1, ClockTick(reloj));
+
+    TEST_ASSERT_TRUE(ClockGetTime(reloj, hora, sizeof(hora)));
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERADO, hora, sizeof(ESPERADO));
+}

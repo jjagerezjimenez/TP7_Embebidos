@@ -82,7 +82,7 @@ void ClockTick(clock_t reloj){
         reloj -> hora_actual[DECENA_HOR]++;
     }
 
-    if ((reloj -> hora_actual[DECENA_HOR] == 2) & (reloj->hora_actual[UNIDAD_HOR] == 4)) {
+    if ((reloj -> hora_actual[DECENA_HOR] == 2) & (reloj -> hora_actual[UNIDAD_HOR] == 4)) {
         reloj -> hora_actual[UNIDAD_HOR] = 0;
         reloj -> hora_actual[DECENA_HOR] = 0;
     }
