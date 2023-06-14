@@ -111,3 +111,11 @@ bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size){
 
 	return reloj -> alarma -> alarma_valida; 
 }
+
+bool ClockAlarmaActivada(clock_t reloj){
+	return (reloj -> alarma -> alarma_valida);
+}
+
+void ClockAlarmaToggle(clock_t reloj){
+	reloj -> alarma -> alarma_valida ^= true;		// consultar
+}

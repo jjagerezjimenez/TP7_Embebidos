@@ -15,7 +15,9 @@ bool ClockGetAlarma(clock_t reloj, uint8_t * hora, int size);
 
 bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size);
 
+bool ClockAlarmaActivada(clock_t reloj);
 
+void ClockAlarmaToggle(clock_t reloj);
 
 
 
