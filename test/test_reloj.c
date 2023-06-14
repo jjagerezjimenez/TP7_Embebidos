@@ -67,3 +67,78 @@ void test_unidad_segundos(void){
 	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
 
 }
+
+void test_decena_segundos(void){
+	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
+	static const uint8_t ESPERANDO[] = {1, 2, 3, 4, 1, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+
+	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetTime(reloj, INICIAL, 4);
+
+	SIMULADOR_SEGUNDOS(10, ClockTick(reloj));
+	ClockGetTime(reloj, hora, 6);
+
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+
+}
+
+void test_unidad_minutos(void){
+	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
+	static const uint8_t ESPERANDO[] = {1, 2, 3, 5, 0, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+
+	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetTime(reloj, INICIAL, 4);
+
+	SIMULADOR_SEGUNDOS(60, ClockTick(reloj));
+	ClockGetTime(reloj, hora, 6);
+
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+
+}
+
+void test_decena_minutos(void){
+	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
+	static const uint8_t ESPERANDO[] = {1, 2, 4, 4, 0, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+
+	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetTime(reloj, INICIAL, 4);
+
+	SIMULADOR_SEGUNDOS(600, ClockTick(reloj));
+	ClockGetTime(reloj, hora, 6);
+
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+
+}
+
+void test_unidad_horas(void){
+	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
+	static const uint8_t ESPERANDO[] = {1, 3, 3, 4, 0, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+
+	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetTime(reloj, INICIAL, 4);
+
+	SIMULADOR_SEGUNDOS(3600, ClockTick(reloj));		//60*10*6
+	ClockGetTime(reloj, hora, 6);
+
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+
+}
+
+void test_decena_horas(void){
+	static const uint8_t INICIAL[] = {1, 2, 3, 4, 0, 0};
+	static const uint8_t ESPERANDO[] = {2, 2, 3, 4, 0, 0};
+	uint8_t hora[6];                  //no hace falta dejarlo en FF
+
+	clock_t reloj = ClockCreate(TICS_POR_SEGUNDO);
+	ClockSetTime(reloj, INICIAL, 4);
+
+	SIMULADOR_SEGUNDOS(36000, ClockTick(reloj));
+	ClockGetTime(reloj, hora, 6);
+
+	TEST_ASSERT_EQUAL_UINT8_ARRAY(ESPERANDO, hora, 6);
+
+}
