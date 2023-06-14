@@ -54,36 +54,36 @@ void ClockTick(clock_t reloj){
 
 	if (reloj -> tics == UNIDAD_SEG) {
 		reloj -> hora_actual[UNIDAD_SEG]++;
-		reloj -> tics = DECENA_HOR;
+		reloj -> tics = 0;
 	}
 
 	if (reloj -> hora_actual[UNIDAD_SEG] == TIEMPO_UNIDAD) {
-        reloj -> hora_actual[UNIDAD_SEG] = DECENA_HOR;
+        reloj -> hora_actual[UNIDAD_SEG] = 0;
         reloj -> hora_actual[DECENA_SEG]++;
     }
 
     if (reloj -> hora_actual[DECENA_SEG] == TIEMPO_DECENA) {
-        reloj -> hora_actual[DECENA_SEG] = DECENA_HOR;
+        reloj -> hora_actual[DECENA_SEG] = 0;
         reloj -> hora_actual[UNIDAD_MIN]++;
     }
 
     if (reloj -> hora_actual[UNIDAD_MIN] == TIEMPO_UNIDAD) {
-        reloj -> hora_actual[UNIDAD_MIN] = DECENA_HOR;
+        reloj -> hora_actual[UNIDAD_MIN] = 0;
         reloj -> hora_actual[DECENA_MIN]++;
     }
 
     if (reloj -> hora_actual[DECENA_MIN] == TIEMPO_DECENA) {
-        reloj -> hora_actual[DECENA_MIN] = DECENA_HOR;
+        reloj -> hora_actual[DECENA_MIN] = 0;
         reloj -> hora_actual[UNIDAD_HOR]++;
     }
 
     if (reloj -> hora_actual[UNIDAD_HOR] == TIEMPO_UNIDAD) {
-        reloj -> hora_actual[UNIDAD_HOR] = DECENA_HOR;
+        reloj -> hora_actual[UNIDAD_HOR] = 0;
         reloj -> hora_actual[DECENA_HOR]++;
     }
 
-    if ((reloj -> hora_actual[DECENA_HOR] == DECENA_MIN) & (reloj->hora_actual[UNIDAD_HOR] == DECENA_SEG)) {
-        reloj -> hora_actual[UNIDAD_HOR] = DECENA_HOR;
-        reloj -> hora_actual[DECENA_HOR] = DECENA_HOR;
+    if ((reloj -> hora_actual[DECENA_HOR] == 2) & (reloj->hora_actual[UNIDAD_HOR] == 4)) {
+        reloj -> hora_actual[UNIDAD_HOR] = 0;
+        reloj -> hora_actual[DECENA_HOR] = 0;
     }
 }
