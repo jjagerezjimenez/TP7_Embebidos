@@ -187,7 +187,17 @@ void test_ajustar_alarma(void){
 	// y este? -> TEST_ASSERT_FALSE(ClockGetAlarma(reloj, hora, 6)); consultar
 
 }
+
 /*
+void test_alarma_activada(void) {
+    static const uint8_t ESPERADO[] = {1, 3, 3, 4, 0, 0};
+    ClockSetAlarma(reloj, ESPERADO, 6);
+    SIMULADOR_SEGUNDOS(60 * 60, ClockTick(reloj));
+    TEST_ASSERT_TRUE(bandera_alarma);
+}
+ */
+
+
 void test_disparar_alarma(void) {
     static const uint8_t ALARMA_INICIAL[] = {1, 3, 3, 4, 0, 0};
 
@@ -203,14 +213,6 @@ void test_disparar_alarma(void) {
 
     TEST_ASSERT_TRUE(bandera_alarma);
 }
-
-void test_alarma_activada(void) {
-    static const uint8_t ESPERADO[] = {1, 3, 3, 4, 0, 0};
-    ClockSetAlarma(reloj, ESPERADO, 6);
-    SIMULADOR_SEGUNDOS(60 * 60, ClockTick(reloj));
-    TEST_ASSERT_TRUE(bandera_alarma);
-}
- */
 
 
 

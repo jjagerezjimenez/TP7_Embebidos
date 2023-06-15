@@ -184,7 +184,7 @@ void ClockTick(clock_t reloj){
          reloj -> hora_actual[DECENA_HOR] = 0;
     }
 
-    
+    Alarma_valida(reloj);
 }
 
 
@@ -201,10 +201,17 @@ bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size){
 	return reloj -> alarma -> alarma_valida; 
 }
 
-bool ClockAlarmaActivada(clock_t reloj){
-	return (reloj -> alarma -> alarma_valida);
+bool ClockAlarmaRetardo(clock_t reloj, int retardo){
+	//return (reloj -> alarma -> alarma_valida);
+    reloj -> alarma -> tempo = 60 * retardo;
 }
 
 void ClockAlarmaToggle(clock_t reloj){
-	reloj -> alarma -> alarma_valida ^= true;		// consultar
+	//reloj -> alarma -> alarma_valida ^= true;		// consultar
+    if (reloj -> alarma -> alarma_valida){
+        reloj -> alarma -> alarma_valida = false;
+
+    }else{  reloj -> alarma -> alarma_valida = true;    }
+
+    return reloj -> alarma -> alarma_valida;
 }
