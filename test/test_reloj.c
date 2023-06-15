@@ -209,9 +209,32 @@ void test_disparar_alarma(void) {
 
     TEST_ASSERT_FALSE(bandera_alarma);
 
-    SIMULADOR_SEGUNDOS(1801, ClockTick(reloj));		//0*60+1
+    SIMULADOR_SEGUNDOS(1801, ClockTick(reloj));		//30*60+1
 
     TEST_ASSERT_TRUE(bandera_alarma);
+}
+
+
+void test_alarma_retardo(void){
+
+	static const uint8_t ALARMA_INICIAL[] = {1, 3, 3, 4, 0, 0};
+
+    ClockSetAlarma(reloj, ALARMA_INICIAL, 4);
+	SIMULADOR_SEGUNDOS(3601, ClockTick(reloj))			//1*60*60+1
+
+    //TEST_ASSERT_FALSE(bandera_alarma);	//consultar
+	TEST_ASSERT_TRUE(bandera_alarma);
+	
+	ClockAlarmaRetardo(reloj, 5);
+	bandera_alarma = false;
+    SIMULADOR_SEGUNDOS(240, ClockTick(reloj));			//4*60
+
+    TEST_ASSERT_FALSE(bandera_alarma);
+
+    SIMULADOR_SEGUNDOS(60, ClockTick(reloj));		
+
+    TEST_ASSERT_TRUE(bandera_alarma);
+
 }
 
 
