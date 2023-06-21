@@ -23,7 +23,7 @@ bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size);
 
 bool ClockAlarmaRetardo(clock_t reloj, int retardo);
 
-void ClockAlarmaToggle(clock_t reloj);
+bool ClockAlarmaToggle(clock_t reloj);
 
 
 

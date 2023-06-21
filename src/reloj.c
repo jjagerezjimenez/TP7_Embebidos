@@ -203,10 +203,10 @@ bool ClockSetAlarma(clock_t reloj, const uint8_t * hora, int size){
 
 bool ClockAlarmaRetardo(clock_t reloj, int retardo){
 	//return (reloj -> alarma -> alarma_valida);
-    reloj -> alarma -> tempo = 60 * retardo;
+    return (reloj -> alarma -> tempo = (60 * retardo));
 }
 
-void ClockAlarmaToggle(clock_t reloj){
+bool ClockAlarmaToggle(clock_t reloj){
 	//reloj -> alarma -> alarma_valida ^= true;		// consultar
     if (reloj -> alarma -> alarma_valida){
         reloj -> alarma -> alarma_valida = false;
